@@ -1,16 +1,17 @@
 import sys
 n = int(sys.stdin.readline().strip())
-cnt = [1]*n
-
-for i in range(n):
-    alphabet = []
+lst = []
+cnt = 0
+for _ in range(n):
+    lst = []
     word = sys.stdin.readline().strip()
-    for j in range(len(word)):
-        if word[j] not in alphabet:
-            alphabet.append(word[j])
+    for i in range(len(word)):
+        if word[i] not in lst or word[i] == lst[-1]:
+            lst.append(word[i])
         else:
-            if word[j] == word[j-1]:
-                continue
-            elif word[j] != word[j-1]:
-                cnt[i] = 0
-print(sum(cnt))
+            continue
+
+    if len(word) == len(lst):
+        cnt += 1
+
+print(cnt)
